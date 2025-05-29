@@ -1,4 +1,4 @@
-import { Controller, Logger, MessageEvent, Sse } from "@nestjs/common";
+import { Controller, Logger, MessageEvent, Sse } from '@nestjs/common';
 import { interval, map, Observable } from 'rxjs';
 import { StellarMockEventService } from './stellar.mock.event.service';
 
@@ -8,9 +8,7 @@ export class StellarMockEventController {
   constructor(
     private readonly stellarMockEventService: StellarMockEventService,
   ) {
-    this.logger.log(
-      `Stellar Mock Event Controller Initialized with ${stellarMockEventService}`,
-    );
+    this.logger.log(`Stellar Mock Event Controller Initialized`);
   }
 
   @Sse('sse')
@@ -18,9 +16,5 @@ export class StellarMockEventController {
     return interval(1000).pipe(
       map(this.stellarMockEventService.transformMessageEvent()),
     );
-  }
-
-  private transformMessageEvent(): (n: number) => MessageEvent {
-    return (n: number): MessageEvent => ({ data: { hello: n } }) as MessageEvent;
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable, Logger, MessageEvent } from "@nestjs/common";
+import { Injectable, Logger, MessageEvent } from '@nestjs/common';
 import { StellarSdkService } from '../stellarsdk/stellar.sdk.service';
 import { Api } from '@stellar/stellar-sdk/lib/rpc/api';
 
@@ -40,8 +40,7 @@ export class StellarMockEventService {
   }
 
   transformMessageEvent(): (n: number) => MessageEvent {
-    return (n: number): MessageEvent =>
-      this.mapNtoMockContractEvent(n) as MessageEvent;
+    return (n: number): MessageEvent => this.mapNtoMockContractEvent(n);
   }
 
   mapNtoMockContractEvent(n: number): MessageEvent {
@@ -51,13 +50,20 @@ export class StellarMockEventService {
         this.defaultStartLedger,
         n,
       );
-
-      return {
-        data: mockEvent
-      } as MessageEvent;
+      return this.buildMessageEvent(mockEvent);
     } catch (error) {
       throw new Error(`Error loading account: ${error.message}`);
     }
+  }
+
+  private buildMessageEvent(mockEvent: MockContractEvent): MessageEvent {
+    return {
+      event: 'mockevent',
+      type: 'event',
+      id: mockEvent.id,
+      target: 'sse',
+      data: mockEvent,
+    } as MessageEvent;
   }
 
   getMockEvent(
@@ -76,7 +82,9 @@ export class StellarMockEventService {
     n: number,
   ): MockContractEvent {
     try {
-      this.logger.log(`Transforming RPC Event Response ${event}`);
+      this.logger.log(
+        `Transforming RPC Event Response for Ledger #: ${event.ledger} Ledger Close: ${event.ledgerClosedAt}`,
+      );
       return {
         type: event.type,
         ledger: event.ledger + n,

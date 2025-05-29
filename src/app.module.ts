@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
-import { StellarModule } from './stellar/stellar.module';
 import { StellarMockEventController } from './stellar/stellar.mock.event.controller';
 import { StellarSdkModule } from './stellarsdk/stellarSdkModule';
-import { StellarMockEventService } from "./stellar/stellar.mock.event.service";
+import { StellarMockEventService } from './stellar/stellar.mock.event.service';
 
 @Module({
   imports: [

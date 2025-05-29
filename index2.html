@@ -1,0 +1,28 @@
+<script type="text/javascript">
+  
+  
+  const eventSource = new EventSource('http://localhost:3000/api/stellar/mock/event/sse', {
+    withCredentials: true
+  });
+  console.log(JSON.stringify(eventSource));
+
+  eventSource.onmessage = ({ data }) => {
+    console.log("Received SSE data:" + JSON.stringify(data));
+    const message = document.createElement('div');
+    message.innerText = 'New message: ' + JSON.stringify(data);
+    document.body.appendChild(message);
+  };
+  eventSource.onerror = (err) => {
+    console.log("Error: " + JSON.stringify(err));
+    const message = document.createElement('div');
+    message.innerText = 'New Error: ' + JSON.stringify(err);
+    document.body.appendChild(message);
+  };
+    
+  eventSource.onopen = () => {
+    console.log("SSE connection opened");
+  };
+  eventSource.onclose = () => {
+    console.log("SSE connection closed");
+  };
+</script>
