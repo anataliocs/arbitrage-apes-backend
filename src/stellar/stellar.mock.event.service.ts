@@ -50,19 +50,21 @@ export class StellarMockEventService {
         this.defaultStartLedger,
         n,
       );
-      return this.buildMessageEvent(mockEvent);
+      return this.buildMessageEvent(mockEvent, n);
     } catch (error) {
       throw new Error(`Error loading account: ${error.message}`);
     }
   }
 
-  private buildMessageEvent(mockEvent: MockContractEvent): MessageEvent {
+  private buildMessageEvent(
+    mockEvent: MockContractEvent,
+    n: number,
+  ): MessageEvent {
     return {
-      event: 'mockevent',
-      type: 'event',
-      id: mockEvent.id,
-      target: 'sse',
+      type: 'message',
+      id: n + '',
       data: mockEvent,
+      retry: 0,
     } as MessageEvent;
   }
 
