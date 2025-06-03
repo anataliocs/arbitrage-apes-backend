@@ -1,9 +1,10 @@
 import { StellarSdkService } from './stellar.sdk.service';
 import { DynamicModule, Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
-@Module({})
+@Module({ imports: [ConfigModule] })
 export class StellarSdkModule {
-  static register(options: Record<string, any>): DynamicModule {
+  static register(options: Record<string, string>): DynamicModule {
     return {
       module: StellarSdkModule,
       providers: [

@@ -9,6 +9,7 @@ import * as StellarSdk from '@stellar/stellar-sdk';
 import { Contract, xdr, rpc } from '@stellar/stellar-sdk';
 import { Api } from '@stellar/stellar-sdk/lib/rpc/api';
 import EventResponse = Api.EventResponse;
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class StellarSdkService implements OnApplicationShutdown, OnModuleInit {
@@ -23,8 +24,14 @@ export class StellarSdkService implements OnApplicationShutdown, OnModuleInit {
   }
   private _rpcServer: StellarSdk.rpc.Server;
 
-  constructor(@Inject('CONFIG_OPTIONS') private options: Record<string, any>) {
-    this._rpcServer = new StellarSdk.rpc.Server(options.rpcServerUrl);
+  constructor(
+    private configService: ConfigService,
+    @Inject('CONFIG_OPTIONS') private options: Record<string, string>,
+  ) {
+    this._rpcServer = new StellarSdk.rpc.Server(
+      this.configService.get<string>('STELLAR_RPC_SERVER_URL') ||
+        options.rpcServerUrl,
+    );
   }
 
   onModuleInit() {

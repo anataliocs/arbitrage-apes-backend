@@ -7,15 +7,15 @@ import { StellarMockEventService } from './stellar/stellar.mock.event.service';
 
 @Module({
   imports: [
-    StellarSdkModule.register({
-      rpcServerUrl: 'https://soroban-testnet.stellar.org',
-    }),
     HttpModule,
     ConfigModule.forRoot({
       envFilePath: ['.env.local', '.env.dev', '.env.ci'],
       isGlobal: true,
     }),
     HttpModule,
+    StellarSdkModule.register({
+      rpcServerUrl: 'https://soroban-testnet.stellar.org',
+    }),
   ],
   providers: [StellarMockEventService],
   controllers: [StellarMockEventController],

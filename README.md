@@ -47,6 +47,13 @@ $ pnpm install
 
 ## Compile and run
 
+**Choose a Testnet RPC Provider**
+- Testnet [public RPC Providers](https://developers.stellar.org/docs/data/apis/api-providers#publicly-accessible-apis)
+- Set env files for your local: `.env.local`, `.env.dev`, `.env.ci`
+```dotenv
+STELLAR_RPC_SERVER_URL=https://soroban-testnet.stellar.org
+```
+
 ```bash
 # development
 $ pnpm run start
@@ -58,17 +65,24 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
-Open API docs: 
+----
+
+### Local Dev Tools
+
+**Open API docs:** 
 ```http request
 http://localhost:3000/api
 ```
 
 You may have CORS issues on localhost.
-
 You can try opening Chrome in a sandbox with web security disabled:
+- This is ONLY for local dev, and it uses a separate user data directory, runs in incognito with a new window each time 
+
 ```bash
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome http://localhost:63342/stellar-arbitrage-apes-future-yacht-club/index.html?_ijt=q9fn6vaje10r5bcfgmcmafoo6p&_ij_reload=RELOAD_ON_SAVE --args --disable-web-security --user-data-dir="~/.chrome.dev.session/" --incognito --new-window
 ```
+
+
 
 ## Run tests
 
