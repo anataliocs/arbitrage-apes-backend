@@ -17,4 +17,11 @@ export class StellarMockEventController {
       map(this.stellarMockEventService.transformMessageEvent()),
     );
   }
+
+  @Sse('sse/:contractId')
+  sse_by_contract_id(): Observable<MessageEvent> {
+    return interval(1000).pipe(
+      map(this.stellarMockEventService.transformMessageEvent()),
+    );
+  }
 }
