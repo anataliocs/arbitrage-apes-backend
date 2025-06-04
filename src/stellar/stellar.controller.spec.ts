@@ -9,7 +9,9 @@ describe('StellarController', () => {
       controllers: [StellarMockEventController],
     }).compile();
 
-    controller = module.get<StellarMockEventController>(StellarMockEventController);
+    controller = module.get<StellarMockEventController>(
+      StellarMockEventController,
+    );
   });
 
   it('should be defined', () => {

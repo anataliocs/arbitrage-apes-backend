@@ -1,4 +1,4 @@
-import { Controller, Logger, MessageEvent, Sse } from '@nestjs/common';
+import { Controller, Logger, MessageEvent, Param, Sse } from "@nestjs/common";
 import { interval, map, Observable } from 'rxjs';
 import { StellarMockEventService } from './stellar.mock.event.service';
 
@@ -19,9 +19,15 @@ export class StellarMockEventController {
   }
 
   @Sse('sse/:contractId')
-  sse_by_contract_id(): Observable<MessageEvent> {
+  sse_by_contract_id(
+    @Param('contractId') contractId: string,
+  ): Observable<MessageEvent> {
     return interval(1000).pipe(
-      map(this.stellarMockEventService.transformMessageEvent()),
+      map(
+        this.stellarMockEventService.transformMessageEventWithContract(
+          contractId,
+        ),
+      ),
     );
   }
 }

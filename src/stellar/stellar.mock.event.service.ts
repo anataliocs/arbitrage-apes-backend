@@ -42,6 +42,25 @@ export class StellarMockEventService {
   transformMessageEvent(): (n: number) => MessageEvent {
     return (n: number): MessageEvent => this.mapNtoMockContractEvent(n);
   }
+  transformMessageEventWithContract(
+    contractId: string,
+  ): (n: number) => MessageEvent {
+    return (n: number): MessageEvent =>
+      this.mapMockContractEvent(n, contractId);
+  }
+
+  mapMockContractEvent(n: number, contractId: string): MessageEvent {
+    try {
+      const mockEvent: MockContractEvent = this.getMockEvent(
+        contractId,
+        this.defaultStartLedger,
+        n,
+      );
+      return this.buildMessageEvent(mockEvent, n);
+    } catch (error) {
+      throw new Error(`Error loading account: ${error.message}`);
+    }
+  }
 
   mapNtoMockContractEvent(n: number): MessageEvent {
     try {
