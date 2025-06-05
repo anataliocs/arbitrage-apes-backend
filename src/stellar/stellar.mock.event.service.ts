@@ -112,7 +112,7 @@ export class StellarMockEventService {
         ledgerClosedAt: event.ledgerClosedAt,
         id: event.id,
         pagingToken: event.pagingToken,
-        contractId: this.defaultContractId,
+        contractId: event.contractId.contractId(),
         topic: this._topics,
         value: this._value,
       } as MockContractEvent;

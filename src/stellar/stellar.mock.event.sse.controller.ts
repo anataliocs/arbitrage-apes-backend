@@ -3,7 +3,7 @@ import { interval, map, Observable } from 'rxjs';
 import { StellarMockEventService } from './stellar.mock.event.service';
 
 @Controller('api/stellar/mock/event')
-export class StellarMockEventController {
+export class StellarMockEventSseController {
   private readonly logger = new Logger(StellarMockEventService.name);
   constructor(
     private readonly stellarMockEventService: StellarMockEventService,

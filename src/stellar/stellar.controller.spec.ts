@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { StellarMockEventController } from './stellar.mock.event.controller';
+import { StellarMockEventSseController } from './stellar.mock.event.sse.controller';
 
 describe('StellarController', () => {
-  let controller: StellarMockEventController;
+  let controller: StellarMockEventSseController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [StellarMockEventController],
+      controllers: [StellarMockEventSseController],
     }).compile();
 
-    controller = module.get<StellarMockEventController>(
-      StellarMockEventController,
+    controller = module.get<StellarMockEventSseController>(
+      StellarMockEventSseController,
     );
   });
 

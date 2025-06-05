@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
-import { StellarMockEventController } from './stellar/stellar.mock.event.controller';
+import { StellarMockEventSseController } from './stellar/stellar.mock.event.sse.controller';
 import { StellarSdkModule } from './stellarsdk/stellarSdkModule';
 import { StellarMockEventService } from './stellar/stellar.mock.event.service';
 
@@ -18,7 +18,7 @@ import { StellarMockEventService } from './stellar/stellar.mock.event.service';
     }),
   ],
   providers: [StellarMockEventService],
-  controllers: [StellarMockEventController],
+  controllers: [StellarMockEventSseController],
   exports: [StellarSdkModule],
 })
 export class AppModule {}
