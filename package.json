@@ -35,6 +35,7 @@
     "@stellar/stellar-sdk": "^13.3.0",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.11.11",
+    "arbitrage-apes": "link:../stellar-arbitrage-apes-future-yacht-club/packages/arbitrage-apes",
     "axios": "^1.8.3",
     "class-validator": "^0.14.1",
     "discord.js": "^14.17.3",
@@ -98,6 +99,9 @@
       "@suites/di.nestjs",
       "@suites/doubles.jest",
       "@swc/core"
-    ]
+    ],
+    "overrides": {
+      "arbitrage-apes": "link:../stellar-arbitrage-apes-future-yacht-club/packages/arbitrage-apes"
+    }
   }
 }

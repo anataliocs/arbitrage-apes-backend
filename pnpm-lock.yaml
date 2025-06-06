@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  arbitrage-apes: link:../stellar-arbitrage-apes-future-yacht-club/packages/arbitrage-apes
+
 importers:
 
   .:
@@ -47,6 +50,9 @@ importers:
       '@swc/core':
         specifier: ^1.11.11
         version: 1.11.11
+      arbitrage-apes:
+        specifier: link:../stellar-arbitrage-apes-future-yacht-club/packages/arbitrage-apes
+        version: link:../stellar-arbitrage-apes-future-yacht-club/packages/arbitrage-apes
       axios:
         specifier: ^1.8.3
         version: 1.8.3

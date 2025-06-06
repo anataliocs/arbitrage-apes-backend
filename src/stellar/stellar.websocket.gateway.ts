@@ -3,8 +3,8 @@ import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class StellarGateway {
-  private readonly logger = new Logger(StellarGateway.name);
+export class StellarWebsocketGateway {
+  private readonly logger = new Logger(StellarWebsocketGateway.name);
 
   private readonly debug: boolean = true;
 

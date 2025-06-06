@@ -126,6 +126,7 @@ export class StellarSdkService implements OnApplicationShutdown, OnModuleInit {
       .sort(this.decendingTimestampSort());
   }
 
+  //TODO Refactor as guards
   /**
    * Predicate filter that Validates that all required fields are present
    * in an `Api.EventResponse`.

@@ -1,5 +1,5 @@
 import { Injectable, Logger, MessageEvent } from '@nestjs/common';
-import { StellarSdkService } from '../stellarsdk/stellar.sdk.service';
+import { StellarSdkService } from '../../../stellarsdk/stellar.sdk.service';
 import { Api } from '@stellar/stellar-sdk/lib/rpc/api';
 
 interface MockContractEvent {
@@ -16,12 +16,6 @@ interface MockContractEvent {
 @Injectable()
 export class StellarMockEventService {
   private readonly logger = new Logger(StellarMockEventService.name);
-  private readonly _ledger = 1206844;
-
-  private currentLedger = 0;
-
-  private readonly _type = `contract`;
-
   private readonly _topics = [
     'AAAADwAAAARtaW50',
     'AAAAEgAAAAAAAAAAvBH8ODS0wMgqud9X6VGlvEVG9iQy4qjdlhXAHlneCtw=',
